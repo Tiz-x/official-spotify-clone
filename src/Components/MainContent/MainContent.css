@@ -1,0 +1,892 @@
+/* ==============================================
+   MAIN CONTENT - SPOTIFY STYLE - FULLY RESPONSIVE
+   ============================================== */
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--dark);
+  padding: 16px 24px 24px;
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+.main-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .main-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .main-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   CONTENT PILLS (Filter Buttons)
+   ============================================ */
+
+.content-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.content-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pill-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.pill-btn:active {
+  transform: scale(0.96);
+}
+
+.pill-btn.active {
+  background-color: var(--text-primary);
+  color: var(--background);
+}
+
+[data-theme="light"] .pill-btn {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .pill-btn:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+
+.content-section {
+  margin-bottom: 48px;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin: 0 0 4px 0;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: text-decoration 0.2s;
+}
+
+.section-title:hover {
+  text-decoration: underline;
+}
+
+.section-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: -8px 0 16px 0;
+}
+
+.show-all-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.show-all-link:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* ============================================
+   CONTENT GRID - HORIZONTAL SCROLL (Desktop)
+   ============================================ */
+
+.content-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   CONTENT CARDS
+   ============================================ */
+
+.content-card {
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  min-width: 180px;
+  max-width: 180px;
+  height: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card:hover {
+  background-color: var(--hover);
+}
+
+.content-card:active {
+  background-color: var(--active);
+}
+
+.content-card.playing {
+  background-color: var(--active);
+}
+
+/* ============================================
+   CARD IMAGE
+   ============================================ */
+
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 148px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--active);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.card-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Artist Image - Circular */
+.artist-image-wrapper {
+  border-radius: 50%;
+}
+
+.artist-image {
+  border-radius: 50%;
+}
+
+[data-theme="light"] .card-image-wrapper {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   PLAYING INDICATOR (Animated Bars)
+   ============================================ */
+
+.playing-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 20px;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.playing-indicator .bar {
+  width: 4px;
+  background: linear-gradient(to top, #1db954 0%, #1ed760 100%);
+  border-radius: 2px;
+  animation: wave 0.8s ease-in-out infinite, glow 1.6s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(29, 185, 84, 0.5);
+}
+
+.playing-indicator .bar:nth-child(1) {
+  animation-delay: 0s;
+  height: 50%;
+}
+
+.playing-indicator .bar:nth-child(2) {
+  animation-delay: 0.2s;
+  height: 100%;
+}
+
+.playing-indicator .bar:nth-child(3) {
+  animation-delay: 0.4s;
+  height: 70%;
+}
+
+.playing-indicator .bar:nth-child(4) {
+  animation-delay: 0.6s;
+  height: 85%;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.2);
+    opacity: 0.7;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(29, 185, 84, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(29, 185, 84, 0.9);
+  }
+}
+
+[data-theme="light"] .playing-indicator {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================
+   BADGES AND OVERLAYS
+   ============================================ */
+
+.daily-mix-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 15px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px;
+  z-index: 1;
+}
+
+.daily-mix-text1,
+.daily-mix-text2 {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.daily-mix-text1 {
+  background-color: #32fafa;
+  color: #000;
+}
+
+.daily-mix-text2 {
+  background-color: #fafa32;
+  color: #000;
+}
+
+.daily-mix-number1,
+.daily-mix-number2 {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.daily-mix-number1 {
+  background-color: #32fafa;
+  color: #000;
+}
+
+.daily-mix-number2 {
+  background-color: #fafa32;
+  color: #000;
+}
+
+/* ============================================
+   PLAY BUTTON
+   ============================================ */
+
+.card-play-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--green);
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s cubic-bezier(0.3, 0, 0, 1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 9;
+}
+
+.content-card:hover .card-play-btn,
+.content-card.playing .card-play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-play-btn:hover {
+  transform: scale(1.06);
+  background-color: #1fdf64;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-play-btn:active {
+  transform: scale(0.98);
+}
+
+.card-play-btn svg {
+  font-size: 18px;
+  margin-left: 2px;
+  color: #000;
+  fill: #000;
+}
+
+/* ============================================
+   CARD INFO
+   ============================================ */
+
+.card-info {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 60px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.3;
+  min-height: 41px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+/* ============================================
+   ARTIST CARD
+   ============================================ */
+
+.artist-card {
+  height: 280px;
+}
+
+.artist-card .card-play-btn {
+  bottom: 8px;
+  right: 8px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* ========== LARGE DESKTOP (1400px and below) ========== */
+@media (max-width: 1400px) {
+  .content-card {
+    min-width: 170px;
+    max-width: 170px;
+    height: 270px;
+  }
+  
+  .card-image-wrapper {
+    height: 138px;
+  }
+  
+  .artist-card {
+    height: 270px;
+  }
+}
+
+/* ========== DESKTOP (1200px and below) ========== */
+@media (max-width: 1200px) {
+  .content-card {
+    min-width: 160px;
+    max-width: 160px;
+    height: 260px;
+  }
+  
+  .card-image-wrapper {
+    height: 128px;
+  }
+  
+  .artist-card {
+    height: 260px;
+  }
+}
+
+/* ========== TABLET (1024px and below) ========== */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 16px 20px 24px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .content-card {
+    min-width: 150px;
+    max-width: 150px;
+    height: 250px;
+    padding: 14px;
+  }
+  
+  .card-image-wrapper {
+    height: 118px;
+    margin-bottom: 14px;
+  }
+
+  .content-grid {
+    gap: 14px;
+  }
+  
+  .artist-card {
+    height: 250px;
+  }
+
+  .card-play-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .card-play-btn svg {
+    font-size: 16px;
+  }
+
+  .content-section {
+    margin-bottom: 40px;
+  }
+
+  /* Thinner scrollbar */
+  .main-content::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .main-content::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+  }
+}
+
+/* ========== MOBILE (768px and below) ========== */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+    border-radius: 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .content-pills {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .pill-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .content-card {
+    min-width: 140px;
+    max-width: 140px;
+    height: 240px;
+    padding: 12px;
+  }
+  
+  .card-image-wrapper {
+    height: 108px;
+    margin-bottom: 12px;
+  }
+
+  .content-grid {
+    gap: 12px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    min-height: 36px;
+    margin-bottom: 6px;
+  }
+
+  .card-subtitle {
+    font-size: 13px;
+  }
+  
+  .artist-card {
+    height: 240px;
+  }
+  
+  .card-play-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-play-btn svg {
+    font-size: 14px;
+  }
+  
+  .playing-indicator {
+    height: 18px;
+    padding: 3px 5px;
+  }
+  
+  .playing-indicator .bar {
+    width: 3px;
+    gap: 3px;
+  }
+
+  .content-section {
+    margin-bottom: 32px;
+  }
+
+  /* Even thinner scrollbar */
+  .main-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .main-content::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+  }
+}
+
+/* ========== SMALL MOBILE (480px and below) ========== */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  .section-description {
+    font-size: 13px;
+  }
+
+  .content-pills {
+    margin-bottom: 16px;
+  }
+
+  .pill-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .content-card {
+    min-width: 130px;
+    max-width: 130px;
+    height: 230px;
+    padding: 10px;
+  }
+  
+  .card-image-wrapper {
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .content-grid {
+    gap: 10px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    min-height: 33px;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+  }
+  
+  .artist-card {
+    height: 230px;
+  }
+  
+  .card-play-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-play-btn svg {
+    font-size: 13px;
+  }
+  
+  .playing-indicator {
+    height: 16px;
+    padding: 3px 4px;
+  }
+  
+  .playing-indicator .bar {
+    width: 2px;
+  }
+
+  .daily-mix-badge {
+    bottom: 6px;
+    left: 6px;
+    right: 12px;
+  }
+
+  .daily-mix-text1,
+  .daily-mix-text2 {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
+
+  .daily-mix-number1,
+  .daily-mix-number2 {
+    font-size: 24px;
+  }
+
+  .content-section {
+    margin-bottom: 28px;
+  }
+
+  /* Ultra-thin scrollbar */
+  .main-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .main-content::-webkit-scrollbar-thumb {
+    border: 1px solid transparent;
+  }
+}
+
+/* ========== VERY SMALL MOBILE (360px and below) ========== */
+@media (max-width: 360px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  .content-card {
+    min-width: 120px;
+    max-width: 120px;
+    height: 220px;
+    padding: 8px;
+  }
+  
+  .card-image-wrapper {
+    height: 92px;
+  }
+  
+  .artist-card {
+    height: 220px;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
+
+  .card-subtitle {
+    font-size: 11px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Always show play buttons on touch devices */
+  .card-play-btn {
+    opacity: 0;
+  }
+
+  .content-card:active .card-play-btn {
+    opacity: 1;
+  }
+
+  /* Larger touch targets */
+  .pill-btn {
+    padding: 10px 18px;
+    min-height: 40px;
+  }
+
+  .card-play-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Remove hover-dependent effects */
+  .content-card:hover {
+    background-color: var(--light-gray);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.pill-btn:focus-visible,
+.content-card:focus-visible,
+.card-play-btn:focus-visible,
+.show-all-link:focus-visible,
+.section-title:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-btn,
+  .content-card,
+  .card-play-btn,
+  .show-all-link {
+    transition: none;
+  }
+  
+  .playing-indicator .bar {
+    animation: none !important;
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  .main-content {
+    scroll-behavior: auto;
+  }
+
+  .content-grid {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  .content-card {
+    border: 1px solid var(--text-secondary);
+  }
+  
+  .playing-indicator .bar {
+    background: var(--green);
+  }
+
+  .card-play-btn {
+    border: 2px solid #000;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .content-pills,
+  .card-play-btn,
+  .playing-indicator {
+    display: none;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .content-card {
+    min-width: auto;
+    max-width: none;
+    break-inside: avoid;
+  }
+}

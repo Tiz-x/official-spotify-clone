@@ -1,0 +1,404 @@
+/* ==============================================
+   TOOLTIP - SPOTIFY STYLE - FULLY RESPONSIVE
+   ============================================== */
+
+.tooltip {
+  background-color: var(--tooltip-bg, #282828);
+  color: var(--tooltip-text, #ffffff);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeIn 0.15s ease-in;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  max-width: 250px;
+  word-wrap: break-word;
+  position: absolute;
+  z-index: 10000;
+  line-height: 1.4;
+}
+
+/* Allow wrapping for long text */
+.tooltip.wrap {
+  white-space: normal;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Arrow base */
+.tooltip::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* ============================================
+   TOOLTIP POSITIONS
+   ============================================ */
+
+/* Top position */
+.tooltip-top::before {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 4px 0 4px;
+  border-color: var(--tooltip-bg, #282828) transparent transparent transparent;
+}
+
+/* Bottom position */
+.tooltip-bottom::before {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 4px 4px;
+  border-color: transparent transparent var(--tooltip-bg, #282828) transparent;
+}
+
+/* Left position */
+.tooltip-left::before {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 0 4px 4px;
+  border-color: transparent transparent transparent var(--tooltip-bg, #282828);
+}
+
+/* Right position */
+.tooltip-right::before {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 4px 4px 0;
+  border-color: transparent var(--tooltip-bg, #282828) transparent transparent;
+}
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+
+[data-theme="light"] .tooltip {
+  --tooltip-bg: #ffffff;
+  --tooltip-text: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   TOOLTIP VARIANTS
+   ============================================ */
+
+/* Success tooltip (green) */
+.tooltip-success {
+  --tooltip-bg: #1ed760;
+  --tooltip-text: #000000;
+}
+
+/* Error tooltip (red) */
+.tooltip-error {
+  --tooltip-bg: #e22134;
+  --tooltip-text: #ffffff;
+}
+
+/* Warning tooltip (yellow) */
+.tooltip-warning {
+  --tooltip-bg: #ffa500;
+  --tooltip-text: #000000;
+}
+
+/* Info tooltip (blue) */
+.tooltip-info {
+  --tooltip-bg: #3d91f5;
+  --tooltip-text: #ffffff;
+}
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+/* Small tooltip */
+.tooltip-sm {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+
+/* Large tooltip */
+.tooltip-lg {
+  font-size: 16px;
+  padding: 6px 16px;
+  max-width: 320px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* ========== TABLET (1024px and below) ========== */
+@media (max-width: 1024px) {
+  .tooltip {
+    font-size: 13px;
+    max-width: 220px;
+  }
+
+  .tooltip-lg {
+    font-size: 15px;
+    max-width: 280px;
+  }
+}
+
+/* ========== MOBILE (768px and below) ========== */
+@media (max-width: 768px) {
+  .tooltip {
+    font-size: 12px;
+    padding: 3px 10px;
+    max-width: 200px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .tooltip-sm {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+
+  .tooltip-lg {
+    font-size: 14px;
+    padding: 5px 14px;
+    max-width: 240px;
+  }
+
+  /* Smaller arrow on mobile */
+  .tooltip::before {
+    border-width: 3px;
+  }
+
+  .tooltip-top::before {
+    bottom: -3px;
+    border-width: 3px 3px 0 3px;
+  }
+
+  .tooltip-bottom::before {
+    top: -3px;
+    border-width: 0 3px 3px 3px;
+  }
+
+  .tooltip-left::before {
+    right: -3px;
+    border-width: 3px 0 3px 3px;
+  }
+
+  .tooltip-right::before {
+    left: -3px;
+    border-width: 3px 3px 3px 0;
+  }
+}
+
+/* ========== SMALL MOBILE (480px and below) ========== */
+@media (max-width: 480px) {
+  .tooltip {
+    font-size: 11px;
+    padding: 3px 8px;
+    max-width: 160px;
+  }
+
+  .tooltip-lg {
+    font-size: 13px;
+    max-width: 200px;
+  }
+
+  /* Even smaller shadows on small screens */
+  .tooltip {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme="light"] .tooltip {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12),
+                0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Tooltips on touch devices should be slightly larger */
+  .tooltip {
+    font-size: 13px;
+    padding: 5px 12px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Longer animation for touch devices */
+  .tooltip {
+    animation-duration: 0.2s;
+  }
+
+  /* Disable tooltips on very small touch screens (they're annoying) */
+  @media (max-width: 360px) {
+    .tooltip {
+      display: none;
+    }
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tooltip {
+    border: 2px solid currentColor;
+  }
+
+  [data-theme="light"] .tooltip {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+                0 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    animation: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .tooltip {
+    display: none;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* No arrow variant */
+.tooltip-no-arrow::before {
+  display: none;
+}
+
+/* Compact variant (for tight spaces) */
+.tooltip-compact {
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+/* Multiline tooltip helper */
+.tooltip-multiline {
+  white-space: normal;
+  text-align: left;
+  max-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .tooltip-multiline {
+    max-width: 200px;
+  }
+}
+
+/* ============================================
+   PORTAL/POPOVER INTEGRATION
+   ============================================ */
+
+/* When used in a React portal */
+.tooltip-portal {
+  position: fixed;
+}
+
+/* Ensure tooltip is above everything */
+.tooltip-highest {
+  z-index: 99999;
+}
+
+/* ============================================
+   INTERACTION HELPERS
+   ============================================ */
+
+/* Delay classes for staggered tooltips */
+.tooltip-delay-short {
+  animation-delay: 0.1s;
+}
+
+.tooltip-delay-medium {
+  animation-delay: 0.3s;
+}
+
+.tooltip-delay-long {
+  animation-delay: 0.5s;
+}
+
+/* ============================================
+   DARK MODE SPECIFIC ADJUSTMENTS
+   ============================================ */
+
+/* Slightly brighter tooltip in dark mode for better readability */
+@media (prefers-color-scheme: dark) {
+  .tooltip:not([data-theme="light"]) {
+    background-color: #3a3a3a;
+  }
+}
+
+/* ============================================
+   KEYBOARD NAVIGATION SUPPORT
+   ============================================ */
+
+/* Show tooltip when element is focused (accessibility) */
+[data-tooltip]:focus .tooltip,
+[data-tooltip]:focus-visible .tooltip {
+  display: block;
+}
+
+/* ============================================
+   POSITIONING UTILITIES
+   ============================================ */
+
+/* Center alignment */
+.tooltip-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Edge-safe positioning (prevents overflow) */
+.tooltip-safe {
+  max-width: calc(100vw - 32px);
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  .tooltip-safe {
+    max-width: calc(100vw - 24px);
+  }
+}

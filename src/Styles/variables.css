@@ -1,0 +1,45 @@
+/* variables.css - Theme System */
+
+/* Dark Theme (Default) */
+:root {
+  --black: #000000;
+  --dark: #121212;
+  --gray: #b3b3b3;
+  --light-gray: #282828;
+  --white: #ffffff;
+  --green: #1ed760;
+
+  /* Additional theme variables */
+  --background: #000000;
+  --surface: #121212;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --border: #282828;
+  --hover: #1a1a1a;
+  --active: #282828;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --black: #ffffff;
+  --dark: #f6f6f6;
+  --gray: #6a6a6a;
+  --light-gray: #e8e8e8;
+  --white: #000000;
+  --green: #1ed760;
+
+  /* Additional theme variables */
+  --background: #ffffff;
+  --surface: #f6f6f6;
+  --text-primary: #000000;
+  --text-secondary: #6a6a6a;
+  --border: #e8e8e8;
+  --hover: #ebebeb;
+  --active: #e8e8e8;
+}
+
+/* Layout variables (same for both themes) */
+:root {
+  --sidebar-width: 240px;
+  --player-height: 90px;
+}

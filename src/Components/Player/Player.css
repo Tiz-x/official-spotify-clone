@@ -1,0 +1,591 @@
+@import './Playerfullpage.css';
+
+.player {
+  width: 100%;
+  height: 90px;
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ================================
+   LEFT SIDE - FIXED STYLING
+   ================================ */
+
+.player-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  width: 30%;
+  max-width: 400px;
+}
+
+.track-image-small {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  background-color: var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gray);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.track-image-small:hover {
+  transform: scale(1.05);
+}
+
+.track-image-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-info-small {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.track-title-small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+
+.track-title-small:hover {
+  text-decoration: underline;
+}
+
+.track-artist-small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+
+.track-artist-small:hover {
+  text-decoration: underline;
+  color: var(--text-primary);
+}
+
+.like-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.like-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.like-btn.liked {
+  color: var(--green);
+}
+
+.like-btn.liked:hover {
+  color: #1fdf64;
+}
+
+.pip-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.pip-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* ================================
+   CENTER - PLAYER CONTROLS
+   ================================ */
+
+.player-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 722px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  position: relative;
+  border-radius: 50%;
+}
+
+.control-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.06);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-btn:disabled:hover {
+  color: var(--text-secondary);
+  transform: scale(1);
+}
+
+.control-btn.active {
+  color: var(--green);
+}
+
+.shuffle-btn,
+.repeat-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.prev-btn,
+.next-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  color: var(--background);
+}
+
+.play-btn:hover {
+  transform: scale(1.06);
+  background-color: var(--text-primary);
+}
+
+.play-btn:disabled {
+  background-color: var(--light-gray);
+  opacity: 0.5;
+}
+
+.play-btn svg {
+  color: var(--background);
+  fill: var(--background);
+}
+
+.repeat-one-dot {
+  position: absolute;
+  bottom: -4px;
+  font-size: 8px;
+  color: var(--green);
+}
+
+/* ================================
+   PROGRESS BAR - FIXED FOR VISIBILITY
+   ================================ */
+
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.time-current,
+.time-duration {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  min-width: 40px;
+  text-align: center;
+}
+
+.progress-bar-wrapper {
+  flex: 1;
+  height: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Background track - Always visible */
+.progress-bar-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 4px;
+  background-color: var(--light-gray);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Progress fill - Shows current progress */
+.progress-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+  z-index: 2;
+}
+
+/* Actual input slider - Transparent */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+}
+
+/* Slider thumb - Hidden by default, shows on hover */
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show thumb on hover */
+.progress-bar-wrapper:hover .progress-bar::-webkit-slider-thumb,
+.progress-bar:focus::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.progress-bar-wrapper:hover .progress-bar::-moz-range-thumb,
+.progress-bar:focus::-moz-range-thumb {
+  opacity: 1;
+}
+
+/* Green color on hover */
+.progress-bar-wrapper:hover::before {
+  background-color: var(--green);
+  opacity: 0.3;
+}
+
+.progress-bar-wrapper:hover .progress-bar-fill {
+  background-color: var(--green);
+}
+
+/* ================================
+   RIGHT SECTION - Volume & Options
+   ================================ */
+
+.player-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 180px;
+  width: 30%;
+  justify-content: flex-end;
+}
+
+.player-option-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.player-option-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* ================================
+   VOLUME CONTROL - FIXED
+   ================================ */
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.volume-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.volume-slider-wrapper {
+  width: 93px;
+  height: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Background track - Always visible */
+.volume-slider-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 4px;
+  background-color: var(--light-gray);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Volume fill - Shows current volume */
+.volume-slider-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+  z-index: 2;
+}
+
+/* Actual input slider - Transparent */
+.volume-slider {
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+}
+
+/* Slider thumb - Hidden by default, shows on hover */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show thumb on hover */
+.volume-slider-wrapper:hover .volume-slider::-webkit-slider-thumb,
+.volume-slider:focus::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.volume-slider-wrapper:hover .volume-slider::-moz-range-thumb,
+.volume-slider:focus::-moz-range-thumb {
+  opacity: 1;
+}
+
+/* Green color on hover */
+.volume-slider-wrapper:hover::before {
+  background-color: var(--green);
+  opacity: 0.3;
+}
+
+.volume-slider-wrapper:hover .volume-slider-fill {
+  background-color: var(--green);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 1024px) {
+  .player-right {
+    min-width: 120px;
+  }
+
+  .volume-slider-wrapper {
+    width: 70px;
+  }
+  
+  .player-left {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .player {
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  .player-left {
+    min-width: 120px;
+    width: 25%;
+    gap: 8px;
+  }
+
+  .track-image-small {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .track-info-small {
+    gap: 2px;
+  }
+  
+  .track-title-small {
+    font-size: 13px;
+  }
+  
+  .track-artist-small {
+    font-size: 10px;
+  }
+
+  .player-right {
+    display: none;
+  }
+
+  .player-center {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-controls {
+    gap: 12px;
+  }
+
+  .shuffle-btn,
+  .repeat-btn {
+    display: none;
+  }
+  
+  .player-left {
+    gap: 6px;
+  }
+  
+  .like-btn,
+  .pip-btn {
+    display: none;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+
+.control-btn:focus-visible,
+.like-btn:focus-visible,
+.pip-btn:focus-visible,
+.player-option-btn:focus-visible,
+.volume-btn:focus-visible,
+.progress-bar:focus-visible,
+.volume-slider:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
