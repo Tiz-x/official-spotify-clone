@@ -204,9 +204,7 @@
 /* ========== SMALL MOBILE (480px and below) ========== */
 @media (max-width: 480px) {
   .tooltip {
-    font-size: 11px;
-    padding: 3px 8px;
-    max-width: 160px;
+    display: none !important;
   }
 
   .tooltip-lg {
@@ -247,7 +245,7 @@
   /* Disable tooltips on very small touch screens (they're annoying) */
   @media (max-width: 360px) {
     .tooltip {
-      display: none;
+      display: none !important;
     }
   }
 }
