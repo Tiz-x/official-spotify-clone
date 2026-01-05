@@ -517,10 +517,14 @@
 }
 
 @media (max-width: 768px) {
-  .player {
-    padding: 0 8px;
+   padding: 8px 8px 24px 8px; 
     gap: 8px;
-  }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    min-height: 100px; 
 
   .player-left {
     min-width: 120px;
