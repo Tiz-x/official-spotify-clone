@@ -291,9 +291,18 @@ const SearchPage = () => {
                       {track.album || "Single"}
                     </div>
                     <div className="track-duration">
-                      {Math.floor(track.duration / 60)}:
-                      {String(Math.floor(track.duration % 60)).padStart(2, "0")}
-                    </div>
+  {track.duration ? (
+    <>
+      {Math.floor((track.duration || 0) / 60)}:
+      {String(Math.floor((track.duration || 0) % 60)).padStart(
+        2,
+        "0"
+      )}
+    </>
+  ) : (
+    "0:00"
+  )}
+</div>
                   </div>
                 ))}
             </div>
