@@ -1,6 +1,6 @@
 // src/pages/SearchPage/SearchPage.tsx
 import { useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { usePlayer } from "../../hooks/usePlayer";
 import type { Track } from "../../context/PlayerContext";
