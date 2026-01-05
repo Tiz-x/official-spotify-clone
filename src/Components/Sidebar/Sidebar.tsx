@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen = false, onClose }: SidebarProps) => {
     currentTrack, 
     isPlaying,
     likedSongs,
-    queue
+    // queue
   } = usePlayer();
 
   // Helper functions
