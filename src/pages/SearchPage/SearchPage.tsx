@@ -9,7 +9,7 @@ import "./SearchPage.css";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const query = searchParams.get("q") || "";
   const [activeTab, setActiveTab] = useState<
     "all" | "tracks" | "artists" | "albums" | "playlists"
